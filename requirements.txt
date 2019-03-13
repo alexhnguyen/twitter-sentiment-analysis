@@ -1,0 +1,4 @@
+matplotlib>=3.0.3
+nltk>=3.4
+numpy>=1.16.2
+tweepy>=3.7.0

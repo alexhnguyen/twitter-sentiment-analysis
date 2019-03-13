@@ -1,0 +1,5 @@
+name: sentiment_env
+channels:
+  - defaults
+dependencies:
+  - python>=3.6.6
