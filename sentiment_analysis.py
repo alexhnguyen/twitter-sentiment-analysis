@@ -13,6 +13,7 @@ from authorization import authorization
 
 nltk.download('vader_lexicon', quiet=True)
 matplotlib.use('agg', warn=False, force=True)
+from matplotlib.lines import Line2D
 from matplotlib import pyplot as plt
 
 
@@ -87,7 +88,23 @@ class PlotSentiment(object):
         ticks = np.arange(start, stop + self.xres, self.xres)
         ax.set_xticks(ticks)
         plt.tight_layout()
+        legend_elements = [
+            Line2D([0], [0], marker='.', color='w', label='Sentiment Score',
+                   markerfacecolor='b', markersize=10),
+            Line2D([0], [0], marker='.', color='w', label='Average Sentiment Score',
+                   markerfacecolor='r', markersize=10)
+        ]
+        plt.legend(handles=legend_elements, loc='lower right')
         plt.savefig(save_name)
+
+        # plt.axvline(x=37.65+(45.65-41.65)/31*11, label='Presidential Election'.format(37.65), c='g', alpha=0.5)
+        # legend_elements += [Line2D([0], [0], color='g', label='Presidential Election')]
+
+        # plt.axvline(x=ticks[1]+(ticks[1]-ticks[0])/31*20, label='Obama Leaves Office'.format(37.65), c='g', alpha=0.5)
+        # legend_elements += [Line2D([0], [0], color='g', label='Obama Leaves Office')]
+
+        # plt.legend(handles=legend_elements, loc='lower right')
+        # plt.savefig(save_name)
 
     def get_data_dict(self, data_array):
         my_dict = defaultdict(list)
